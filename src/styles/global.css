@@ -220,7 +220,8 @@ main { min-height: calc(100vh - 218px); }
 .cv-hero { height: 686px; }
 .cv-hero-grid { align-items: center; display: grid; gap: 60px; grid-template-columns: 360px 710px; }
 .profile-card { background: var(--neutral-00); border: 1px solid var(--theme-05); border-radius: var(--radius); padding: 23px; width: 360px; }
-.profile-image { align-items: center; background: var(--theme-00); border-radius: var(--radius); color: var(--theme-90); display: flex; font-size: 56px; font-weight: 500; height: 220px; justify-content: center; width: 312px; }
+.profile-image { align-items: center; background: var(--theme-00); border-radius: var(--radius); color: var(--theme-90); display: flex; font-size: 56px; font-weight: 500; height: 220px; justify-content: center; margin: 0; overflow: hidden; width: 312px; }
+.profile-image img { display: block; height: 100%; object-fit: cover; object-position: 55% 45%; width: 100%; }
 .profile-name { color: var(--theme-90); font-size: 23px; font-weight: 500; line-height: 32px; margin-top: 24px; }
 .profile-role { color: var(--neutral-60); font-size: 14px; line-height: 22px; margin-top: 6px; }
 .tag-row { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; }
