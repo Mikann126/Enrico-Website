@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { profile } from "../data/site";
+---
+
+<BaseLayout title="Contact" active="Contact">
+  <section class="page-band">
+    <div class="container">
+      <p class="eyebrow">Home / Contact</p>
+      <h1 class="hero-title" style="margin-top: 20px;">Contact</h1>
+      <p class="hero-copy" style="margin-top: 10px;">
+        Direct email, institutional address, and profile links.
+      </p>
+    </div>
+  </section>
+
+  <section class="container page-content">
+    <div class="contact-grid">
+      <article class="card contact-card">
+        <h2 class="contact-name">Professor {profile.name}</h2>
+        <div class="contact-block">
+          <p class="row-label">Email</p>
+          <p>{profile.email}</p>
+        </div>
+        <div class="contact-block">
+          <p class="row-label">Address</p>
+          <p>{profile.address[0]}<br />{profile.address[1]}<br />{profile.address[2]}</p>
+        </div>
+        <div class="actions" style="gap: 12px; margin-top: 25px;">
+          <a class="button" href={`mailto:${profile.email}`}>Email Enrico Perotti</a>
+          <a class="button secondary" href={profile.links.cepr}>CEPR Profile</a>
+        </div>
+      </article>
+
+      <article class="card contact-note">
+        <h2>For academic contact, use the university email address above.</h2>
+        <p class="body-copy">
+          For publication records, policy writing, and current work, the site should point readers
+          to the relevant pages rather than overloading the contact page.
+        </p>
+        <div>
+          <div class="link-row">
+            <p class="row-label">External Profiles</p>
+            <span>
+              <a href={profile.links.cepr}>CEPR profile</a> / <a href={profile.links.voxeu}>VOXeu page</a> / <a href={profile.links.university}>University profile</a>
+            </span>
+          </div>
+          <div class="link-row">
+            <p class="row-label">Website Sections</p>
+            <span><a href="/cv/">CV</a> / <a href="/current-work/">Current Work</a> / <a href="/publications/">Publications</a></span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>

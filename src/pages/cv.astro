@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { advisoryRoles, cvTimeline, profile, recognition } from "../data/site";
+---
+
+<BaseLayout title="CV" active="CV">
+  <section class="page-band cv-hero">
+    <div class="container cv-hero-grid">
+      <aside class="profile-card">
+        <div class="profile-image" aria-label="Portrait placeholder">EP</div>
+        <h1 class="profile-name">{profile.name}</h1>
+        <p class="profile-role">Professor of Finance<br />Amsterdam Business School</p>
+        <div class="tag-row">
+          <span class="profile-tag">Finance</span>
+          <span class="profile-tag">Regulation</span>
+          <span class="profile-tag">Policy</span>
+        </div>
+      </aside>
+
+      <div>
+        <p class="eyebrow">Curriculum Vitae</p>
+        <h2 class="cv-title">Academic profile and appointments.</h2>
+        <p class="body-copy muted" style="max-width: 690px; margin-top: 30px;">
+          Professor of Finance at the Amsterdam Business School, University of Amsterdam.
+          His work spans financial intermediation and regulation, macrofinance, political economy,
+          financial and legal history, and organization theory.
+        </p>
+        <div class="actions">
+          <a class="button" href="#">Download CV</a>
+          <a class="button secondary" href="/publications/">View publications</a>
+          <a class="button secondary" href="/contact/">Contact</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section tight bio-role-grid">
+    <div class="section-copy">
+      <p class="eyebrow small">Bio</p>
+      <h3>A finance scholar working across institutions, stability, and policy.</h3>
+      <p>
+        Perotti is Professor of Finance at the Amsterdam Business School. His research focuses
+        on financial intermediation and regulation, macrofinance and long-term growth, political
+        economy, financial and legal history, and organization theory. Alongside academic research,
+        his recent activity includes advisory work on financial stability at De Nederlandsche Bank,
+        the European Central Bank / ESRB, and the Bank of England.
+      </p>
+    </div>
+
+    <div>
+      <p class="eyebrow small">Current Roles</p>
+      <h3 class="section-title small">Current academic and policy roles.</h3>
+      <div class="role-table" style="margin-top: 10px;">
+        <div class="role-row">
+          <p class="row-label">Academic position</p>
+          <p>Professor of Finance, University of Amsterdam.</p>
+        </div>
+        <div class="role-row">
+          <p class="row-label">Policy role</p>
+          <p>Senior Advisor on Financial Stability, De Nederlandsche Bank.</p>
+        </div>
+        <div class="role-row">
+          <p class="row-label">Research fields</p>
+          <p>Financial intermediation, bank regulation, macrofinance, political economy, and financial history.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container section tight">
+    <div class="section-copy">
+      <p class="eyebrow small">Studies and Career</p>
+      <h3>Education and academic appointments.</h3>
+    </div>
+    <div class="list-card" style="margin-top: 40px;">
+      {
+        cvTimeline.map((item) => (
+          <div class="timeline-row">
+            <span class="date-pill">{item.date}</span>
+            <div>
+              <p class="timeline-title">{item.title}</p>
+              <p class="timeline-detail">{item.detail}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container section tight">
+    <div class="section-copy">
+      <p class="eyebrow small">Policy Activity</p>
+      <h3>Selected advisory experience.</h3>
+      <p>A compact record of policy-facing roles, kept separate from the full research publication list.</p>
+    </div>
+    <div class="list-card" style="margin-top: 40px;">
+      {
+        advisoryRoles.map((role) => (
+          <div class="policy-row">
+            <p class="row-label">{role.code}</p>
+            <h3>{role.institution}</h3>
+            <p>{role.detail}</p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="container section tight">
+    <div class="section-copy">
+      <p class="eyebrow small">Recognition</p>
+      <h3>Recognition and downloadable CV.</h3>
+      <p>Selected awards, fellowships, and a direct route to the full curriculum vitae document.</p>
+    </div>
+    <div class="card recognition-row" style="margin-top: 40px;">
+      <p class="body-copy muted" style="max-width: 858px; margin-top: 0;">{recognition}</p>
+      <a class="button" href="#">Download CV</a>
+    </div>
+  </section>
+</BaseLayout>

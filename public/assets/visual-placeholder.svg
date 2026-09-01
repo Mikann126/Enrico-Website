@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 320" role="img" aria-labelledby="title desc">
+  <title id="title">Research graph placeholder</title>
+  <desc id="desc">A restrained placeholder chart for draft research visuals.</desc>
+  <rect width="520" height="320" fill="#f2f6fa"/>
+  <g stroke="#d9e2ec" stroke-width="1">
+    <path d="M52 56H478"/>
+    <path d="M52 112H478"/>
+    <path d="M52 168H478"/>
+    <path d="M52 224H478"/>
+  </g>
+  <rect x="220" y="50" width="58" height="220" fill="#fff" opacity=".66"/>
+  <path d="M54 260H478" stroke="#b8c7d8" stroke-width="2"/>
+  <path d="M54 46V260" stroke="#b8c7d8" stroke-width="2"/>
+  <path d="M68 246L132 244L194 241L238 236L280 202L338 176L404 163L462 158" fill="none" stroke="#2a5a86" stroke-width="4"/>
+  <path d="M54 250L126 247L194 244L238 238L280 228L338 212L404 200L462 193" fill="none" stroke="#2a5a86" stroke-width="2" opacity=".45"/>
+</svg>
