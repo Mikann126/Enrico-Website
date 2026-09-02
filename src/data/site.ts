@@ -26,6 +26,7 @@ links: {
     cv: "/cv/",
     publications: "/publications/",
     currentWork: "/current-work/",
+    policyAdvisory: "/policy-advisory/",
     contact: "/contact/",
     cepr: "https://cepr.org/about/people/enrico-perotti",
     voxeu: "https://cepr.org/voxeu",
@@ -38,6 +39,7 @@ export const navItems = [
   { label: "CV", href: "/cv/" },
   { label: "Current Work", href: "/current-work/" },
   { label: "Publications", href: "/publications/" },
+  { label: "Policy & Advisory", href: "/policy-advisory/" },
   { label: "Contact", href: "/contact/" },
 ];
 
@@ -281,6 +283,38 @@ export const publicWriting = [
     title: "Building bank resilience by Additional Tier 1 debt reform",
     meta: "26 Jan 2026",
     href: "#",
+  },
+];
+
+export const policyAdvisoryCards = [
+  {
+    eyebrow: "Policy Reports",
+    title: "Policy reports and policy papers.",
+    text:
+      "A dedicated area for reports, policy papers, and institutional work that connects academic research to financial-stability practice.",
+    tags: ["Reports", "Policy papers"],
+  },
+  {
+    eyebrow: "Advisory Roles",
+    title: "Central-bank and regulatory advisory roles.",
+    text:
+      "Selected advisory work with the ECB, ESRB, DNB, IMF, World Bank, and European Commission.",
+    tags: ["ECB", "ESRB", "DNB", "IMF", "World Bank", "European Commission"],
+  },
+];
+
+export const policyContributions = [
+  {
+    type: "VoxEU Articles",
+    text: "Columns and commentary written for policy and practitioner audiences.",
+  },
+  {
+    type: "Financial Times Articles",
+    text: "Public-facing writing and contributions on financial stability and regulation.",
+  },
+  {
+    type: "Speeches and Interviews",
+    text: "Selected talks, interviews, and media contributions, grouped for quick scanning.",
   },
 ];
 

@@ -166,7 +166,14 @@ main { min-height: calc(100vh - 218px); }
   margin-top: 10px;
 }
 .section-copy h3,
-.section-title.small { font-size: 33px; line-height: 48px; margin-top: 10px; }
+.section-title.small {
+  color: var(--neutral-80);
+  font-size: 33px;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 48px;
+  margin-top: 10px;
+}
 .section-copy p,
 .body-copy { color: var(--neutral-80); font-size: 16px; line-height: 25px; margin-top: 10px; }
 .muted { color: var(--neutral-60); }
@@ -316,4 +323,17 @@ main { min-height: calc(100vh - 218px); }
 
 @media (prefers-reduced-motion: reduce) {
   .nav-link { transition: none; }
+}
+.policy-card-grid { display: grid; gap: 40px; grid-template-columns: repeat(2, 1fr); }
+.policy-overview-card { min-height: 338px; padding: 30px; }
+.policy-overview-card h3 { color: var(--neutral-80); font-size: 33px; font-weight: 500; line-height: 48px; margin-top: 15px; }
+.policy-overview-card .body-copy { color: var(--neutral-80); max-width: 500px; }
+.policy-tags { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px; }
+.contribution-row { align-items: center; background: var(--neutral-05); border: 1px solid var(--theme-05); border-radius: var(--radius); display: grid; gap: 42px; grid-template-columns: 260px 1fr; min-height: 74px; padding: 18px 22px; }
+.contribution-row + .contribution-row { margin-top: 20px; }
+.contribution-row p:last-child { color: var(--theme-90); font-size: 18px; font-weight: 500; line-height: 25px; }
+
+@media (max-width: 900px) {
+  .policy-card-grid, .contribution-row { grid-template-columns: 1fr; }
+  .contribution-row { gap: 8px; }
 }
