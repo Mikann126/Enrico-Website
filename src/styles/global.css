@@ -135,9 +135,10 @@ main { min-height: calc(100vh - 218px); }
   justify-content: center;
   margin: 0;
   overflow: hidden;
-  width: 390px;
+  justify-self: end;
+  width: 350px;
 }
-.portrait-panel img { display: block; height: 100%; object-fit: cover; object-position: 50% 35%; width: 100%; }
+.portrait-panel img { display: block; height: 100%; object-fit: cover; object-position: 50% 0%; width: 100%; }
 .credential-strip {
   background: var(--neutral-10);
   border: 1px solid var(--theme-05);
