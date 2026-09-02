@@ -8,9 +8,21 @@ export const profile = {
     "Plantage Muidergracht 12",
     "1018 TV Amsterdam, The Netherlands",
   ],
-  summary:
-    "Professor of Finance at the Amsterdam Business School, University of Amsterdam. His research and policy work focus on financial intermediation, financial stability, bank regulation, macrofinance, political economy, and financial and legal history.",
-  links: {
+  summary: `Welcome to my page! I am interested in big-picture questions in political economy, macrofinance, banking and corporate finance, organization theory, and historical discontinuities in legal and financial history.
+
+I am currently working on structural breaks in our growth process in recent decades, which have led to increasing inequality and financial stagnation. As you may see, my interests are terribly broad—I admit my exuberance. I am lucky that I can pursue varied and interesting questions while still managing to hold down a paying job.
+
+As life battered my ideals (just as it probably did with yours), I became somewhat disciplined. I am no longer boldly going where none has gone before, starting lots of projects. My interests now cluster around several puzzling trends: a rising demand for safety, a highly redistributive growth process, and their combined effect on financial stagnation.
+
+I think these are interesting and novel ideas—and, perhaps for that very reason, nearly impossible to publish in a scientific journal (see my piece with Robin Döttling on redistributive growth). Yet real-world people are curious about them. Vox populi, vox Dei!
+
+The proof is a large research grant from an open competition in the social sciences and humanities to work on redistributive growth. This is amazing, since humanities scholars and social scientists tend to resent economists as know-it-alls who use extreme assumptions about human behavior. I guess my project relies on what people consider more plausible assumptions.
+
+I take this as a sign of relevance, and I now seek a larger audience than the scientific journal referees with whom I have engaged for thirty years.
+
+I see this as a natural evolution in a research career focused on public purposes. Over the years, I have served as an adviser to the World Bank, the IMF, the European Commission, and central banks such as the ECB, the Federal Reserve, the Bank of England, and DNB. I am presently a member of the ESRB Advisory Scientific Committee at the ECB, where we tackle concrete policy challenges and seek perspectives on long-term stability issues.`,
+
+links: {
     cv: "/cv/",
     publications: "/publications/",
     currentWork: "/current-work/",
