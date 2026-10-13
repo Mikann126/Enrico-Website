@@ -40,7 +40,6 @@ export const navItems = [
   { label: "Current Work", href: "/current-work/" },
   { label: "Publications", href: "/publications/" },
   { label: "Policy & Advisory", href: "/policy-advisory/" },
-  { label: "Contact", href: "/contact/" },
 ];
 
 export const highlights = [
