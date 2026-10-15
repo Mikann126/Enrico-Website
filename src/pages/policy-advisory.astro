@@ -11,11 +11,17 @@ import { policyAdvisoryCards, policyContributions } from "../data/site";
       <p class="hero-copy" style="margin-top: 10px;">
         Policy reports, advisory roles, public writing, and institutional contributions.
       </p>
-    </div>
+    </div>  <img
+    src="/assets/enrico-policy.jpg"
+    alt="Enrico Perotti"
+    class="policy-photo"
+  />
+</div>
   </section>
 
   <section class="container page-content">
-<div style="max-width: 850px; margin-bottom: 48px;">
+<div class="policy-intro">
+  <div>
   <h2 style="margin-bottom: 20px;">Three decades of policy work</h2>
 
   <p class="body-copy">
@@ -80,4 +86,30 @@ import { policyAdvisoryCards, policyContributions } from "../data/site";
       }
     </div>
   </section>
-</BaseLayout>
+</BaseLayout> <style>
+  .policy-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 48px;
+    align-items: start;
+    margin-bottom: 48px;
+  }
+
+  .policy-photo {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+  }
+
+  @media (max-width: 800px) {
+    .policy-intro {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .policy-photo {
+      max-width: 360px;
+    }
+  }
+</style>
