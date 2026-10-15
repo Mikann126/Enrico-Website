@@ -20,7 +20,8 @@ const themes = [
       },
       {
         title: "Bank Fragility Over the Reserve Cycle",
-        detail: "Research in progress",
+        detail: "Research in progress · Coauthor's research page",
+        url: "https://sites.google.com/site/almeidadamatta/research",
       },
     ],
   },
@@ -36,11 +37,13 @@ const themes = [
       },
       {
         title: "Creating Intangible Capital",
-        detail: "Research in progress",
+        detail: "Working paper",
+        url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3479152",
       },
       {
         title: "Secular Trends and Technological Progress",
-        detail: "Research in progress",
+        detail: "Working paper",
+        url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3095569",
       },
     ],
   },
@@ -50,16 +53,19 @@ const themes = [
       "How political incentives and legal institutions shape ownership, financial development, and institutional change.",
     papers: [
       {
-        title: "The Political Economy of Corporate Control",
+        title: "The Political Economy of Corporate Control and Labor Rents",
         detail: "Journal of Political Economy, 2006",
+        url: "https://doi.org/10.1086/500278",
       },
       {
         title: "Machiavellian Privatization",
         detail: "American Economic Review, 2002",
+        url: "https://doi.org/10.1257/000282802760015694",
       },
       {
         title: "The Emergence of the Corporate Form",
         detail: "Journal of Law, Economics, and Organization, 2017",
+        url: "https://doi.org/10.1093/jleo/ewx002",
       },
     ],
   },
@@ -69,16 +75,19 @@ const themes = [
       "How firms and markets support entrepreneurship, exchange ideas, and respond to change.",
     papers: [
       {
-        title: "Circulation of Ideas in Firms and in Markets",
+        title: "The Circulation of Ideas in Firms and Markets",
         detail: "Management Science, 2011",
+        url: "https://doi.org/10.1287/mnsc.1110.1385",
       },
       {
         title: "Entrepreneurs and New Ideas",
         detail: "RAND Journal of Economics, 2008",
+        url: "https://doi.org/10.1111/j.1756-2171.2008.00052.x",
       },
       {
         title: "Resistance to Change",
-        detail: "Research in progress",
+        detail: "Research in progress · Earlier working paper",
+        url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=2356936",
       },
     ],
   },
@@ -249,17 +258,13 @@ const policyPapers = [
               {theme.papers.map((paper) => (
                 <li>
                   <p class="theme-paper-title">
-                    {"url" in paper ? (
-                      <a
-                        href={paper.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {paper.title}
-                      </a>
-                    ) : (
-                      paper.title
-                    )}
+                    <a
+                      href={paper.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {paper.title}
+                    </a>
                   </p>
                   <p class="theme-paper-detail">{paper.detail}</p>
                 </li>
@@ -303,7 +308,16 @@ const policyPapers = [
             </figure>
 
             <div class="paper-copy">
-              <h3 class="paper-title">{paper.title}</h3>
+              <h3 class="paper-title">
+                <a
+                  href={paper.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {paper.title}
+                </a>
+              </h3>
+
               <p class="paper-meta">
                 {paper.authors} / {paper.venue}
               </p>
@@ -350,7 +364,16 @@ const policyPapers = [
             </figure>
 
             <div class="paper-copy">
-              <h3 class="paper-title">{paper.title}</h3>
+              <h3 class="paper-title">
+                <a
+                  href={paper.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {paper.title}
+                </a>
+              </h3>
+
               <p class="paper-meta">
                 {paper.authors} / {paper.venue}
               </p>
@@ -504,13 +527,15 @@ const policyPapers = [
   }
 
   .theme-paper-title a,
-  .list-paper-title a {
+  .list-paper-title a,
+  .paper-title a {
     color: inherit;
     text-decoration: none;
   }
 
   .theme-paper-title a:hover,
-  .list-paper-title a:hover {
+  .list-paper-title a:hover,
+  .paper-title a:hover {
     text-decoration: underline;
     text-underline-offset: 4px;
   }
