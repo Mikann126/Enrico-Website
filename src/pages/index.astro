@@ -1,12 +1,69 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import {
-  featuredPublications,
-  highlights,
-  profile,
-  publicWriting,
-  researchThemes,
-} from "../data/site";
+import { highlights, profile, publicWriting, researchThemes } from "../data/site";
+
+const currentPapers = [
+  {
+    title: "Contingent Fees to Contain Bank Runs",
+    authors: "Rafael Matta, Remo Oostdam, and Enrico Perotti",
+    venue: "Preliminary draft",
+    image: "/assets/contingent-fees-figure-1.png",
+    alt: "Run thresholds under sequential service and two contingent fee mechanisms, against asset liquidation value.",
+    summary: "Fees activated by large deposit outflows can reduce panic-based runs on solvent banks. We show how allocating fee revenues changes withdrawal incentives and liquidity provision, revealing a trade-off between containing runs and meeting depositors' liquidity needs.",
+    caption: "Figure 1. Contingent fees lower run thresholds relative to standard sequential service. Matta, Oostdam, and Perotti.",
+    url: "https://elischolar.library.yale.edu/ypfs-documents2/5464",
+  },
+  {
+    title: "Containing Runs on Solvent Banks: Prioritizing Recovery over Resolution",
+    authors: "Edoardo D. Martino and Enrico C. Perotti",
+    venue: "Journal of Financial Crises, 2025",
+    image: "/assets/containing-runs-figure-6.png",
+    alt: "Early recapitalization and redemption charges can support bank recovery instead of runs and bailouts.",
+    summary: "Solvent but undercapitalized banks can face runs before supervisors take effective action. We propose combining early recapitalization through contingent capital with automatic redemption charges during large uninsured deposit outflows, giving viable banks a chance to recover.",
+    caption: "Figure 6. Interim interventions favoring recovery. Martino and Perotti (2025).",
+    url: "https://doi.org/10.17132/2693-3179.1598",
+  },
+];
+
+const selectedPapers = [
+  {
+    title: "Achieving Safety: Personal, Private, and Public Provision",
+    authors: "Enrico Perotti and Spyros Terovitis",
+    venue: "Journal of Economic Theory, 2025",
+    image: "/assets/achieving-safety-figure-2.png",
+    alt: "Self-insurance and project investment under autarky and the constrained-efficient allocation.",
+    summary: "A minimum need for safety shapes how households invest. We show how banks can reduce inefficient self-insurance by supplying safe debt, and how government debt and deposit insurance affect private safety provision and aggregate investment in different ways.",
+    caption: "Figure 2. Reallocating self-insurance toward more efficient providers raises aggregate project investment. Perotti and Terovitis (2025).",
+    url: "https://doi.org/10.1016/j.jet.2025.105962",
+  },
+  {
+    title: "Pay, Stay, or Delay? How to Settle a Run",
+    authors: "Rafael Matta and Enrico Perotti",
+    venue: "Review of Financial Studies, 2024",
+    image: "/assets/pay-stay-delay-figure-4.png",
+    alt: "Welfare as a function of suspension timing and the liquidation value of illiquid assets.",
+    summary: "How should a bank settle withdrawals during a run? We compare immediate repayment, suspension, and delayed liquidation. The best rule balances depositors' liquidity needs, fire-sale losses, and incentives to run; discretionary intervention can lead to excessive liquidation and more frequent runs.",
+    caption: "Figure 4. Welfare depends on suspension timing and asset liquidation value when remaining assets are liquidated after suspension. Matta and Perotti (2024).",
+    url: "https://doi.org/10.1093/rfs/hhad084",
+  },
+  {
+    title: "Capital Forbearance in the Bank Recovery and Resolution Game",
+    authors: "Natalya Martynova, Enrico Perotti, and Javier Suarez",
+    venue: "Journal of Financial Economics, 2022",
+    image: "/assets/capital-forbearance-figure-2.png",
+    alt: "Multiple equilibria under limited resolution capacity, including a low-recovery equilibrium.",
+    summary: "When intervention is costly, supervisors may struggle to credibly require weak banks to recapitalize. We show how this weakens banks' recovery incentives. Limited resolution capacity can create a too-many-to-resolve outcome, with widespread forbearance and higher systemic costs.",
+    caption: "Figure 2. A limit on resolution capacity can generate multiple equilibria, including one with no private recovery. Martynova, Perotti, and Suarez (2022).",
+    url: "https://doi.org/10.1016/j.jfineco.2022.09.006",
+  },
+];
+
+const otherPublications = [
+  { title: "The Euro as a Diverse Monetary Union", authors: "with Oscar Soons", venue: "European Journal of Political Economy, 2026" },
+  { title: "The Good, the Bad and the Missed Boom", authors: "with Magda Rola-Janicka", venue: "Review of Financial Studies, 2022" },
+  { title: "Cheap but Flighty", authors: "with Toni Ahnert", venue: "Journal of Banking and Finance, 2021" },
+  { title: "Convertible Bank Capital & Risk Incentives", authors: "with Natalya Martynova", venue: "Journal of Financial Intermediation, 2018" },
+];
 ---
 
 <BaseLayout title="Home" active="Home">
@@ -17,303 +74,140 @@ import {
           <p class="eyebrow">Professor of Finance</p>
           <h1 class="hero-title">{profile.name}</h1>
           <p class="hero-copy">{profile.summary}</p>
-
           <div class="actions">
             <a class="button" href="/cv/">Read the CV</a>
-            <a class="button secondary" href="/publications/">
-              Browse publications
-            </a>
+            <a class="button secondary" href="/publications/">Browse publications</a>
           </div>
         </div>
-
         <figure class="portrait-panel">
-          <img
-            src="/assets/enrico-home.jpg"
-            alt="Portrait of Enrico C. Perotti"
-          />
+          <img src="/assets/enrico-home.jpg" alt="Portrait of Enrico C. Perotti" />
         </figure>
       </div>
-
       <div class="credential-strip">
-        {
-          highlights.map((item) => (
-            <div>
-              <p class="credential-value">{item.value}</p>
-              <p class="credential-label">{item.label}</p>
-            </div>
-          ))
-        }
+        {highlights.map((item) => (
+          <div>
+            <p class="credential-value">{item.value}</p>
+            <p class="credential-label">{item.label}</p>
+          </div>
+        ))}
       </div>
     </div>
   </section>
 
   <section class="container section">
-    <div class="section-copy">
-      <h2>Research Themes</h2>
-    </div>
-
+    <div class="section-copy"><h2>Research Themes</h2></div>
     <div class="grid three" style="margin-top: 40px;">
-      {
-        researchThemes.map((theme) => (
-          <article class="card theme-card">
-            <span class="theme-mark">{theme.code}</span>
-            <h3 class="card-title">{theme.title}</h3>
-            <p class="card-text">{theme.text}</p>
-          </article>
-        ))
-      }
+      {researchThemes.map((theme) => (
+        <article class="card theme-card">
+          <span class="theme-mark">{theme.code}</span>
+          <h3 class="card-title">{theme.title}</h3>
+          <p class="card-text">{theme.text}</p>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="container section">
     <div class="section-head">
-      <div class="section-copy">
-        <h2>Current Work on Financial Stability</h2>
-      </div>
-
-      <a class="text-link" href="/current-work/">
-        See all current work ›
-      </a>
+      <div class="section-copy"><h2>Current Work on Financial Stability</h2></div>
+      <a class="text-link" href="/current-work/">See all current work ›</a>
     </div>
-
-    <div class="home-papers">
-      <article class="card home-paper">
-        <a
-          class="home-paper-image"
-          href="https://elischolar.library.yale.edu/ypfs-documents2/5464"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Read Contingent Fees to Contain Bank Runs"
-        >
-          <img
-            src="/assets/contingent-fees-figure-1.png"
-            alt="Run thresholds under sequential service and two contingent fee mechanisms, plotted against asset liquidation value."
-          />
-        </a>
-
-        <div class="home-paper-content">
-          <h3 class="paper-title">
-            Contingent Fees to Contain Bank Runs
-          </h3>
-
-          <p class="paper-meta">
-            Rafael Matta, Remo Oostdam, and Enrico Perotti /
-            Preliminary draft
-          </p>
-
-          <p class="card-text">
-            Fees activated by large deposit outflows can reduce
-            panic-based runs on solvent banks. We show how allocating
-            fee revenues changes withdrawal incentives and liquidity
-            provision, revealing a trade-off between containing runs
-            and meeting depositors' liquidity needs.
-          </p>
-
-          <p class="home-figure-caption">
-            Figure 1. Contingent fees lower run thresholds relative
-            to standard sequential service.
-          </p>
-
-          <a
-            class="text-link"
-            href="https://elischolar.library.yale.edu/ypfs-documents2/5464"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read the paper ›
-          </a>
-        </div>
-      </article>
-
-      <article class="card home-paper">
-        <a
-          class="home-paper-image"
-          href="https://doi.org/10.17132/2693-3179.1598"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Read Containing Runs on Solvent Banks"
-        >
-          <img
-            src="/assets/containing-runs-figure-6.png"
-            alt="Diagram showing how early recapitalization and redemption charges can support recovery of solvent but undercapitalized banks."
-          />
-        </a>
-
-        <div class="home-paper-content">
-          <h3 class="paper-title">
-            Containing Runs on Solvent Banks:
-            Prioritizing Recovery over Resolution
-          </h3>
-
-          <p class="paper-meta">
-            Edoardo D. Martino and Enrico C. Perotti /
-            Journal of Financial Crises, 2025
-          </p>
-
-          <p class="card-text">
-            Solvent but undercapitalized banks can face runs before
-            supervisors take effective action. We propose combining
-            early recapitalization through contingent capital with
-            automatic redemption charges during large uninsured
-            deposit outflows, giving viable banks a chance to recover.
-          </p>
-
-          <p class="home-figure-caption">
-            Figure 6. Early capital and liquidity interventions
-            can favor recovery over runs and bailouts.
-          </p>
-
-          <a
-            class="text-link"
-            href="https://doi.org/10.17132/2693-3179.1598"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read the paper ›
-          </a>
-        </div>
-      </article>
+    <div class="current-papers">
+      {currentPapers.map((paper) => (
+        <article class="card current-paper">
+          <figure class="paper-figure">
+            <a href={paper.image} target="_blank" rel="noopener noreferrer" aria-label={`Enlarge figure from ${paper.title}`}>
+              <img src={paper.image} alt={paper.alt} loading="lazy" />
+            </a>
+            <figcaption>{paper.caption}</figcaption>
+          </figure>
+          <div class="paper-copy">
+            <h3 class="paper-title">{paper.title}</h3>
+            <p class="paper-meta">{paper.authors} / {paper.venue}</p>
+            <p class="paper-description">{paper.summary}</p>
+            <a class="text-link" href={paper.url} target="_blank" rel="noopener noreferrer">Read the paper ›</a>
+          </div>
+        </article>
+      ))}
     </div>
   </section>
 
   <section class="container section">
-    <div class="section-head">
-      <div class="section-copy">
-        <h2>Publications</h2>
-      </div>
-
-      <a class="text-link" href="/publications/">
-        See all publications ›
-      </a>
+    <div class="section-copy"><h2>Publications</h2></div>
+    <div class="selected-papers">
+      {selectedPapers.map((paper) => (
+        <article class="publication-row">
+          <figure class="paper-figure">
+            <a href={paper.image} target="_blank" rel="noopener noreferrer" aria-label={`Enlarge figure from ${paper.title}`}>
+              <img src={paper.image} alt={paper.alt} loading="lazy" />
+            </a>
+            <figcaption>{paper.caption}</figcaption>
+          </figure>
+          <div class="paper-copy">
+            <h3 class="paper-title">{paper.title}</h3>
+            <p class="paper-meta">{paper.authors} / {paper.venue}</p>
+            <p class="paper-description">{paper.summary}</p>
+            <a class="text-link" href={paper.url} target="_blank" rel="noopener noreferrer">Read the paper ›</a>
+          </div>
+        </article>
+      ))}
     </div>
-
-    <div class="grid three">
-      {
-        featuredPublications.slice(0, 3).map((paper) => (
-          <article class="card featured-card">
-            <div>
-              <span class="pill">{paper.tag}</span>
-              <h3 class="paper-title">{paper.title}</h3>
-              <p class="paper-meta">
-                {paper.authors} / {paper.venue}
-                {paper.year ? `, ${paper.year}` : ""}
-              </p>
-              <p class="paper-summary">{paper.summary}</p>
-            </div>
-            <div class="visual-slot" aria-hidden="true"></div>
-          </article>
-        ))
-      }
-    </div>
+    <ul class="publication-list">
+      {otherPublications.map((paper) => (
+        <li>
+          <p class="list-paper-title">{paper.title}</p>
+          <p class="paper-meta">{paper.authors} / {paper.venue}</p>
+        </li>
+      ))}
+    </ul>
+    <a class="text-link" href="/publications/">See all publications ›</a>
   </section>
 
   <section class="container section">
     <div class="section-copy" style="max-width: 1200px;">
       <h2>Blogs and Policy Papers</h2>
-      <p>
-        My policy work spans over three decades, including advisory roles
-        at De Nederlandsche Bank, the European Central Bank, and the
-        Bank of England. My blogs and policy papers address financial
-        stability, banking regulation, and reform.
-      </p>
+      <p>My policy work spans over three decades, including advisory roles at De Nederlandsche Bank, the European Central Bank, and the Bank of England. My blogs and policy papers address financial stability, banking regulation, and reform.</p>
     </div>
-
     <div class="grid four" style="margin-top: 40px;">
-      {
-        publicWriting.map((item) => (
-          <article class="card public-card">
-            <h3 class="card-title">{item.type}</h3>
-            <p class="card-text">{item.title}</p>
-          </article>
-        ))
-      }
-
+      {publicWriting.map((item) => (
+        <article class="card public-card">
+          <h3 class="card-title">{item.type}</h3>
+          <p class="card-text">{item.title}</p>
+        </article>
+      ))}
       <article class="card public-card">
         <h3 class="card-title">Policy Advice</h3>
-        <p class="card-text">
-          Three decades of advice to governments, central banks,
-          and international institutions.
-        </p>
+        <p class="card-text">Three decades of advice to governments, central banks, and international institutions.</p>
       </article>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  .home-papers {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
-    margin-top: 40px;
-  }
-
-  .home-paper {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    overflow: hidden;
-  }
-
-  .home-paper-image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 320px;
-    padding: 18px;
-    box-sizing: border-box;
-    background: #fff;
-  }
-
-  .home-paper-image img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .home-paper-content {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    gap: 16px;
-    padding-top: 24px;
-  }
-
-  .home-paper-content > * {
-    margin: 0;
-  }
-
-  .home-paper-content .card-text {
-    font-size: 16px;
-    line-height: 1.65;
-    color: var(--neutral-80);
-  }
-
-  .home-figure-caption {
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--neutral-80);
-  }
-
-  .home-paper-content .text-link {
-    align-self: flex-start;
-    margin-top: auto;
-    padding-top: 8px;
-  }
-
+  .current-papers { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px; margin-top: 40px; }
+  .current-paper { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+  .paper-figure { margin: 0; min-width: 0; }
+  .paper-figure a { display: flex; align-items: center; justify-content: center; background: white; }
+  .paper-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
+  .current-paper .paper-figure a { height: 300px; padding: 12px; box-sizing: border-box; }
+  .current-paper .paper-figure img { max-height: 100%; }
+  figcaption { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--neutral-80, #555); }
+  .paper-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; min-width: 0; }
+  .paper-copy > * { margin: 0; }
+  .paper-description { font-size: 16px; line-height: 1.65; color: var(--neutral-80, #444); }
+  .selected-papers { margin-top: 36px; }
+  .publication-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding: 32px 0; border-bottom: 1px solid #deded8; }
+  .publication-row:first-child { padding-top: 0; }
+  .publication-row .paper-figure a { padding: 8px; }
+  .publication-list { list-style: none; margin: 28px 0; padding: 0; }
+  .publication-list li { padding: 16px 0; border-bottom: 1px solid #deded8; }
+  .publication-list p { margin: 0; }
+  .list-paper-title { font-size: 18px; font-weight: 600; line-height: 1.4; }
+  .publication-list .paper-meta { margin-top: 5px; }
   @media (max-width: 800px) {
-    .home-papers {
-      grid-template-columns: 1fr;
-    }
-
-    .home-paper-image {
-      height: auto;
-      padding: 12px;
-    }
-
-    .home-paper-image img {
-      height: auto;
-    }
+    .current-papers, .publication-row { grid-template-columns: 1fr; }
+    .publication-row { gap: 24px; }
+    .current-paper .paper-figure a { height: auto; }
   }
 </style>
+
