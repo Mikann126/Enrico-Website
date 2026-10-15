@@ -11,48 +11,51 @@ import { policyAdvisoryCards, policyContributions } from "../data/site";
       <p class="hero-copy" style="margin-top: 10px;">
         Policy reports, advisory roles, public writing, and institutional contributions.
       </p>
-    </div>  <img
-    src="/assets/enrico-policy.jpg"
-    alt="Enrico Perotti"
-    class="policy-photo"
-  />
-</div>
+    </div>
   </section>
 
   <section class="container page-content">
-<div class="policy-intro">
-  <div>
-  <h2 style="margin-bottom: 20px;">Three decades of policy work</h2>
+    <div class="policy-intro">
+      <div>
+        <h2 style="margin-bottom: 20px;">Three decades of policy work</h2>
 
-  <p class="body-copy">
-    My policy work began in the early 1990s, advising governments in
-    Eastern Europe on privatization and banking reform, alongside visits
-    to the IMF and World Bank. From 1997 to 2000, I led banking research
-    at the EU-sponsored RECEP centre in Moscow, advising the government
-    and central bank during the Russian financial crisis.
-  </p>
+        <p class="body-copy">
+          My policy work began in the early 1990s, advising governments in
+          Eastern Europe on privatization and banking reform, alongside visits
+          to the IMF and World Bank. From 1997 to 2000, I led banking research
+          at the EU-sponsored RECEP centre in Moscow, advising the government
+          and central bank during the Russian financial crisis.
+        </p>
 
-  <p class="body-copy" style="margin-top: 18px;">
-    Since the global financial crisis, my work has focused on financial
-    stability and prudential regulation. As an advisor to the Dutch
-    Central Bank and a fellow at the Bank of England and European
-    Central Bank, I have contributed to debates on liquidity charges,
-    Basel III, insurance regulation, and the treatment of financial
-    collateral in bankruptcy. A recurring concern is how rules that
-    protect individual creditors can increase instability across the
-    financial system.
-  </p>
+        <p class="body-copy" style="margin-top: 18px;">
+          Since the global financial crisis, my work has focused on financial
+          stability and prudential regulation. As an advisor to the Dutch
+          Central Bank and a fellow at the Bank of England and European
+          Central Bank, I have contributed to debates on liquidity charges,
+          Basel III, insurance regulation, and the treatment of financial
+          collateral in bankruptcy. A recurring concern is how rules that
+          protect individual creditors can increase instability across the
+          financial system.
+        </p>
 
-  <p class="body-copy" style="margin-top: 18px;">
-    My recent work examines contingent capital, timely supervisory
-    intervention, and measures to contain runs on banks, money market
-    funds, and stablecoins. I advocate automatic stabilizers that
-    support early intervention and bank recovery. My current research
-    considers AT1 capital reform and the coordination of stablecoin
-    regulation across jurisdictions, including the US GENIUS Act and
-    the EU’s MiCAR.
-  </p>
-</div>
+        <p class="body-copy" style="margin-top: 18px;">
+          My recent work examines contingent capital, timely supervisory
+          intervention, and measures to contain runs on banks, money market
+          funds, and stablecoins. I advocate automatic stabilizers that
+          support early intervention and bank recovery. My current research
+          considers AT1 capital reform and the coordination of stablecoin
+          regulation across jurisdictions, including the US GENIUS Act and
+          the EU’s MiCAR.
+        </p>
+      </div>
+
+      <img
+        src="/assets/enrico-policy.jpg"
+        alt="Enrico Perotti"
+        class="policy-photo"
+      />
+    </div>
+
     <div class="policy-card-grid">
       {
         policyAdvisoryCards.map((card) => (
@@ -61,7 +64,9 @@ import { policyAdvisoryCards, policyContributions } from "../data/site";
             <h3>{card.title}</h3>
             <p class="body-copy">{card.text}</p>
             <div class="policy-tags">
-              {card.tags.map((tag) => <span class="profile-tag">{tag}</span>)}
+              {card.tags.map((tag) => (
+                <span class="profile-tag">{tag}</span>
+              ))}
             </div>
           </article>
         ))
@@ -72,7 +77,9 @@ import { policyAdvisoryCards, policyContributions } from "../data/site";
   <section class="container section tight">
     <div class="section-copy" style="max-width: 940px;">
       <p class="eyebrow small">Public Writing</p>
-      <h3>VoxEU, Financial Times, speeches, interviews, and policy contributions.</h3>
+      <h3>
+        VoxEU, Financial Times, speeches, interviews, and policy contributions.
+      </h3>
     </div>
 
     <div style="margin-top: 40px;">
@@ -86,7 +93,9 @@ import { policyAdvisoryCards, policyContributions } from "../data/site";
       }
     </div>
   </section>
-</BaseLayout> <style>
+</BaseLayout>
+
+<style>
   .policy-intro {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 320px;
