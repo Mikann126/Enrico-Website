@@ -1,6 +1,88 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { highlights, profile, researchThemes } from "../data/site";
+import { highlights, profile } from "../data/site";
+
+const themes = [
+  {
+    title: "Banking & Financial Stability",
+    description:
+      "Bank runs, demand for safety, and the design of regulation and recovery tools.",
+    papers: [
+      {
+        title: "Achieving Safety: Personal, Private, and Public Provision",
+        detail: "Journal of Economic Theory, 2025",
+        url: "https://doi.org/10.1016/j.jet.2025.105962",
+      },
+      {
+        title: "Capital Forbearance in the Bank Recovery and Resolution Game",
+        detail: "Journal of Financial Economics, 2022",
+        url: "https://doi.org/10.1016/j.jfineco.2022.09.006",
+      },
+      {
+        title: "Bank Fragility Over the Reserve Cycle",
+        detail: "Research in progress",
+      },
+    ],
+  },
+  {
+    title: "Finance & Economic Growth",
+    description:
+      "How financial systems, corporate financing, and technological change shape investment and growth.",
+    papers: [
+      {
+        title: "The Euro as a Diverse Monetary Union",
+        detail: "European Journal of Political Economy, 2026",
+        url: "https://doi.org/10.1016/j.ejpoleco.2025.102797",
+      },
+      {
+        title: "Creating Intangible Capital",
+        detail: "Research in progress",
+      },
+      {
+        title: "Secular Trends and Technological Progress",
+        detail: "Research in progress",
+      },
+    ],
+  },
+  {
+    title: "Political Economy & Financial History",
+    description:
+      "How political incentives and legal institutions shape ownership, financial development, and institutional change.",
+    papers: [
+      {
+        title: "The Political Economy of Corporate Control",
+        detail: "Journal of Political Economy, 2006",
+      },
+      {
+        title: "Machiavellian Privatization",
+        detail: "American Economic Review, 2002",
+      },
+      {
+        title: "The Emergence of the Corporate Form",
+        detail: "Journal of Law, Economics, and Organization, 2017",
+      },
+    ],
+  },
+  {
+    title: "Organizations & Innovation",
+    description:
+      "How firms and markets support entrepreneurship, exchange ideas, and respond to change.",
+    papers: [
+      {
+        title: "Circulation of Ideas in Firms and in Markets",
+        detail: "Management Science, 2011",
+      },
+      {
+        title: "Entrepreneurs and New Ideas",
+        detail: "RAND Journal of Economics, 2008",
+      },
+      {
+        title: "Resistance to Change",
+        detail: "Research in progress",
+      },
+    ],
+  },
+];
 
 const currentPapers = [
   {
@@ -74,11 +156,13 @@ const otherPublications = [
     title: "The Euro as a Diverse Monetary Union",
     authors: "with Oscar Soons",
     venue: "European Journal of Political Economy, 2026",
+    url: "https://doi.org/10.1016/j.ejpoleco.2025.102797",
   },
   {
     title: "The Good, the Bad and the Missed Boom",
     authors: "with Magda Rola-Janicka",
     venue: "Review of Financial Studies, 2022",
+    url: "https://doi.org/10.1093/rfs/hhac014",
   },
   {
     title: "Cheap but Flighty",
@@ -154,13 +238,33 @@ const policyPapers = [
       <h2>Research Themes</h2>
     </div>
 
-    <div class="grid three" style="margin-top: 40px;">
+    <div class="research-theme-grid">
       {
-        researchThemes.map((theme) => (
-          <article class="card theme-card">
-            <span class="theme-mark">{theme.code}</span>
-            <h3 class="card-title">{theme.title}</h3>
-            <p class="card-text">{theme.text}</p>
+        themes.map((theme) => (
+          <article class="research-theme">
+            <h3>{theme.title}</h3>
+            <p class="theme-description">{theme.description}</p>
+
+            <ul class="theme-paper-list">
+              {theme.papers.map((paper) => (
+                <li>
+                  <p class="theme-paper-title">
+                    {"url" in paper ? (
+                      <a
+                        href={paper.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {paper.title}
+                      </a>
+                    ) : (
+                      paper.title
+                    )}
+                  </p>
+                  <p class="theme-paper-detail">{paper.detail}</p>
+                </li>
+              ))}
+            </ul>
           </article>
         ))
       }
@@ -204,6 +308,7 @@ const policyPapers = [
                 {paper.authors} / {paper.venue}
               </p>
               <p class="paper-description">{paper.summary}</p>
+
               <a
                 class="text-link"
                 href={paper.url}
@@ -250,6 +355,7 @@ const policyPapers = [
                 {paper.authors} / {paper.venue}
               </p>
               <p class="paper-description">{paper.summary}</p>
+
               <a
                 class="text-link"
                 href={paper.url}
@@ -268,7 +374,20 @@ const policyPapers = [
       {
         otherPublications.map((paper) => (
           <li>
-            <p class="list-paper-title">{paper.title}</p>
+            <p class="list-paper-title">
+              {"url" in paper ? (
+                <a
+                  href={paper.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {paper.title}
+                </a>
+              ) : (
+                paper.title
+              )}
+            </p>
+
             <p class="paper-meta">
               {paper.authors} / {paper.venue}
             </p>
@@ -300,6 +419,7 @@ const policyPapers = [
         policyPapers.map((paper) => (
           <article class="policy-writing-item">
             <p class="policy-outlet">{paper.outlet}</p>
+
             <h3>
               <a
                 href={paper.url}
@@ -309,6 +429,7 @@ const policyPapers = [
                 {paper.title}
               </a>
             </h3>
+
             <a
               class="text-link policy-read-link"
               href={paper.url}
@@ -325,6 +446,75 @@ const policyPapers = [
 </BaseLayout>
 
 <style>
+  .research-theme-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 36px 48px;
+    margin-top: 32px;
+  }
+
+  .research-theme {
+    min-width: 0;
+    padding-top: 22px;
+    border-top: 1px solid #d5d5ce;
+  }
+
+  .research-theme h3 {
+    margin: 0 0 12px;
+    font-size: 23px;
+    line-height: 1.35;
+  }
+
+  .theme-description {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--neutral-80, #555);
+  }
+
+  .theme-paper-list {
+    list-style: none;
+    margin: 20px 0 0;
+    padding: 0;
+  }
+
+  .theme-paper-list li {
+    margin: 0;
+    padding: 12px 0;
+    border-bottom: 1px solid #ecece7;
+  }
+
+  .theme-paper-list li:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .theme-paper-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.45;
+  }
+
+  .theme-paper-detail {
+    margin: 4px 0 0;
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--neutral-80, #666);
+  }
+
+  .theme-paper-title a,
+  .list-paper-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .theme-paper-title a:hover,
+  .list-paper-title a:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
   .current-papers {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -483,6 +673,7 @@ const policyPapers = [
   }
 
   @media (max-width: 800px) {
+    .research-theme-grid,
     .current-papers,
     .publication-row,
     .policy-writing-grid {
