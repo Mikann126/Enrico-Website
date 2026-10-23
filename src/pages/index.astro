@@ -107,7 +107,8 @@ const currentPapers = [
     url: "https://elischolar.library.yale.edu/ypfs-documents2/5464",
   },
   {
-    title: "Containing Runs on Solvent Banks: Prioritizing Recovery over Resolution",
+    title:
+      "Containing Runs on Solvent Banks: Prioritizing Recovery over Resolution",
     authors: "Edoardo D. Martino and Enrico C. Perotti",
     venue: "Journal of Financial Crises, 2025",
     image: "/assets/containing-runs-figure-6.png",
@@ -412,84 +413,81 @@ const policyWorks = [
   </section>
 
   <section class="container section">
-    <div class="section-copy">
-      <h2>Blogs</h2>
-      <p>
-        Commentary on banking, financial stability, and regulatory reform.
-      </p>
+    <div class="blogs-policy-columns">
+      <section aria-labelledby="blogs-heading">
+        <h2 id="blogs-heading">Blogs</h2>
+
+        <p class="column-intro">
+          Commentary on banking, financial stability, and regulatory reform.
+        </p>
+
+        <div class="compact-writing-list">
+          {
+            blogs.map((item) => (
+              <article class="compact-writing-item">
+                <p class="compact-outlet">{item.outlet}</p>
+                <h3>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.title}
+                  </a>
+                </h3>
+              </article>
+            ))
+          }
+        </div>
+
+        <a
+          class="text-link compact-more"
+          href="https://cepr.org/about/people/enrico-perotti"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          More VoxEU columns on CEPR ›
+        </a>
+      </section>
+
+      <section aria-labelledby="policy-heading">
+        <h2 id="policy-heading">Policy Work</h2>
+
+        <p class="column-intro">
+          Since the early 1990s, I have advised governments, central banks,
+          and international institutions on banking reform and financial
+          stability, including DNB, the ECB, and the Bank of England.
+        </p>
+
+        <p class="column-intro">
+          My work advocates timely supervisory intervention and automatic
+          stabilizers to contain outflows and support bank recovery.
+        </p>
+
+        <div class="compact-writing-list">
+          {
+            policyWorks.map((item) => (
+              <article class="compact-writing-item">
+                <p class="compact-outlet">{item.outlet}</p>
+                <h3>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {item.title}
+                  </a>
+                </h3>
+              </article>
+            ))
+          }
+        </div>
+
+        <a class="text-link compact-more" href="/policy-advisory/">
+          More about my policy work ›
+        </a>
+      </section>
     </div>
-
-    <div class="writing-list">
-      {
-        blogs.map((item) => (
-          <article class="writing-item">
-            <p class="writing-outlet">{item.outlet}</p>
-            <h3>
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.title}
-              </a>
-            </h3>
-          </article>
-        ))
-      }
-    </div>
-
-    <a
-      class="text-link writing-more"
-      href="https://cepr.org/about/people/enrico-perotti"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      More VoxEU columns and commentary on CEPR ›
-    </a>
-  </section>
-
-  <section class="container section">
-    <div class="section-copy" style="max-width: 1000px;">
-      <h2>Policy Work</h2>
-
-      <p>
-        Since the early 1990s, I have advised governments, central banks,
-        and international institutions on banking reform and financial
-        stability, including work with De Nederlandsche Bank, the
-        European Central Bank, and the Bank of England.
-      </p>
-
-      <p style="margin-top: 16px;">
-        Financial stability requires more than capital and liquidity
-        buffers. Banks also need credible tools to respond when shocks
-        threaten their viability. My work advocates timely supervisory
-        intervention, supported by automatic stabilizers that contain
-        deposit outflows and give viable banks time to recover.
-      </p>
-    </div>
-
-    <div class="writing-list">
-      {
-        policyWorks.map((item) => (
-          <article class="writing-item">
-            <p class="writing-outlet">{item.outlet}</p>
-            <h3>
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {item.title}
-              </a>
-            </h3>
-          </article>
-        ))
-      }
-    </div>
-
-    <a class="text-link writing-more" href="/policy-advisory/">
-      More about my policy work ›
-    </a>
   </section>
 </BaseLayout>
 
@@ -679,49 +677,71 @@ const policyWorks = [
     margin-top: 5px;
   }
 
-  .writing-list {
-    max-width: 1000px;
-    margin-top: 28px;
+  .blogs-policy-columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 40px;
+    align-items: start;
   }
 
-  .writing-item {
-    padding: 22px 0;
-    border-top: 1px solid #d5d5ce;
+  .blogs-policy-columns > section {
+    min-width: 0;
   }
 
-  .writing-outlet {
-    margin: 0 0 8px;
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
+  .blogs-policy-columns h2 {
+    margin: 0 0 12px;
+  }
+
+  .column-intro {
+    margin: 0 0 10px;
+    font-size: 15px;
+    line-height: 1.55;
     color: var(--neutral-80, #555);
   }
 
-  .writing-item h3 {
-    margin: 0;
-    font-size: 22px;
-    line-height: 1.4;
+  .compact-writing-list {
+    margin-top: 18px;
   }
 
-  .writing-item h3 a {
+  .compact-writing-item {
+    padding: 12px 0;
+    border-top: 1px solid #d5d5ce;
+  }
+
+  .compact-outlet {
+    margin: 0 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--neutral-80, #666);
+  }
+
+  .compact-writing-item h3 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.35;
+  }
+
+  .compact-writing-item h3 a {
     color: inherit;
     text-decoration: none;
   }
 
-  .writing-item h3 a:hover {
+  .compact-writing-item h3 a:hover {
     text-decoration: underline;
-    text-underline-offset: 4px;
+    text-underline-offset: 3px;
   }
 
-  .writing-more {
+  .compact-more {
     display: inline-block;
-    margin-top: 24px;
+    margin-top: 14px;
+    font-size: 14px;
   }
 
   @media (max-width: 800px) {
     .research-theme-grid,
     .current-papers,
-    .publication-row {
+    .publication-row,
+    .blogs-policy-columns {
       grid-template-columns: 1fr;
     }
 
@@ -731,6 +751,10 @@ const policyWorks = [
 
     .current-paper .paper-figure a {
       height: auto;
+    }
+
+    .blogs-policy-columns {
+      gap: 30px;
     }
   }
 </style>
