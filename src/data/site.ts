@@ -29,7 +29,6 @@ links: {
 export const navItems = [
   { label: "Home", href: "/" },
   { label: "Current Work", href: "/current-work/" },
-  { label: "Publications", href: "/publications/" },
   { label: "Policy & Advisory", href: "/policy-advisory/" },
 ];
 
