@@ -1,122 +1,395 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { advisoryRoles, cvTimeline, profile, recognition } from "../data/site";
+import { profile } from "../data/site";
+
+const sections = [
+  {
+    title: "Academic Appointments",
+    items: [
+      {
+        date: "1994–present",
+        title: "Professor of Finance",
+        detail:
+          "Amsterdam Business School, University of Amsterdam. Department Head, 2001–2008.",
+      },
+      {
+        date: "1989–1994",
+        title: "Assistant Professor",
+        detail: "Boston University Graduate School of Management.",
+      },
+      {
+        date: "1985–1990",
+        title: "Junior Research Fellow",
+        detail: "Massachusetts Institute of Technology.",
+      },
+    ],
+  },
+  {
+    title: "Education",
+    items: [
+      {
+        date: "1985–1990",
+        title: "Ph.D. in Finance",
+        detail:
+          "Massachusetts Institute of Technology. Thesis advisors: Franco Modigliani, Robert Merton, and Jean Tirole.",
+      },
+      {
+        date: "1978–1984",
+        title: "Laurea in Discipline Economiche e Sociali",
+        detail: "Università Bocconi, Milan.",
+      },
+      {
+        date: "1973–1978",
+        title: "Maturità",
+        detail: "Liceo Zucchi, Monza.",
+      },
+    ],
+  },
+  {
+    title: "Policy and Advisory Experience",
+    items: [
+      {
+        date: "2026–2027",
+        title: "Houblon Norman Fellow and Senior Advisor",
+        detail: "Bank of England, London.",
+      },
+      {
+        date: "2024–2026",
+        title: "Senior Advisor to the Board",
+        detail: "De Nederlandsche Bank, Amsterdam.",
+      },
+      {
+        date: "2015",
+        title: "Wim Duisenberg Fellow",
+        detail: "European Central Bank, Frankfurt.",
+      },
+      {
+        date: "Since 2012",
+        title: "Advisor on Macroprudential Policy and Financial Stability",
+        detail: "European Central Bank.",
+      },
+      {
+        date: "2010–2012",
+        title: "Houblon Norman Fellow and Senior Advisor",
+        detail: "Bank of England, London.",
+      },
+      {
+        date: "2010–2012",
+        title: "Senior Advisor on Macroprudential Policy",
+        detail: "De Nederlandsche Bank, Amsterdam.",
+      },
+      {
+        date: "1997–2000",
+        title: "Senior Advisor",
+        detail:
+          "EU RECEP Center, Moscow. Advisory work for the Russian Central Bank and Ministry of Finance.",
+      },
+    ],
+  },
+  {
+    title: "Awards and Research Grants",
+    items: [
+      {
+        date: "2021",
+        title: "NWO Open Competitie Grant",
+        detail: "Redistributive Credit Allocation, €750,000.",
+      },
+      {
+        date: "2015",
+        title: "Wim Duisenberg Fellowship",
+        detail: "European Central Bank.",
+      },
+      {
+        date: "2011–2012; 2026–2027",
+        title: "Houblon Norman Fellowship",
+        detail: "Bank of England.",
+      },
+      {
+        date: "2002",
+        title: "Lopez de la Vega Prize",
+        detail: "Best paper on European stock exchanges.",
+      },
+      {
+        date: "1985–1989",
+        title: "Doctoral Fellowship",
+        detail: "MIT Sloan School of Management.",
+      },
+    ],
+  },
+  {
+    title: "Visiting Appointments",
+    items: [
+      {
+        date: "2025, 2026",
+        title: "European University Institute",
+        detail: "",
+      },
+      {
+        date: "2016, 2018",
+        title: "Harvard University",
+        detail: "Department of Economics and Harvard Business School.",
+      },
+      {
+        date: "2015–2018",
+        title: "Columbia Business School",
+        detail: "Appointments in 2015 and 2016–2018.",
+      },
+      {
+        date: "2015–2019",
+        title: "Federal Reserve Bank of New York",
+        detail: "Appointments in 2015 and 2016–2019.",
+      },
+      {
+        date: "2011, 2017–2018",
+        title: "Massachusetts Institute of Technology",
+        detail: "",
+      },
+      {
+        date: "2014, 2015",
+        title: "European Central Bank",
+        detail: "",
+      },
+      {
+        date: "2012–2013",
+        title: "Bank of England",
+        detail: "",
+      },
+      {
+        date: "2009",
+        title: "University of Oxford",
+        detail: "Saïd Business School.",
+      },
+      {
+        date: "2004–2007",
+        title: "London Business School",
+        detail: "",
+      },
+      {
+        date: "1992, 1996, 2005, 2026",
+        title: "London School of Economics",
+        detail: "Financial Markets Group.",
+      },
+      {
+        date: "1992–1996, 2002, 2005",
+        title: "International Monetary Fund",
+        detail: "Research Department.",
+      },
+    ],
+  },
+];
+
+const affiliations = [
+  "Research Fellow, Institute for Law and Finance, Goethe University Frankfurt.",
+  "Fellow, European Economic Association; Council Member, 2007–2012.",
+  "Member, European Central Bank Research Network Steering Committee, 2002–2006.",
+  "CEPR Fellow, Financial Economics and International Economics programmes, since 1996.",
+  "Research Fellow, Tinbergen Institute, since 1996.",
+  "Member of NBER research groups in corporate finance, risk, macrofinance, and entrepreneurship, since 2003.",
+];
+
+const service = [
+  "Member of the ESRB Advisory Scientific Committee.",
+  "Founder Director of A Sustainable Future, a faculty-wide research grant platform.",
+  "Referee for journals including Econometrica, American Economic Review, Journal of Finance, Quarterly Journal of Economics, Journal of Political Economy, Review of Financial Studies, and Journal of Financial Economics.",
+  "Conference committee service for the Western Finance Association, European Finance Association, Financial Intermediation Research Society, and Econometric Society.",
+];
 ---
 
-<BaseLayout title="CV" active="CV">
-  <section class="page-band cv-hero">
-    <div class="container cv-hero-grid">
-      <aside class="profile-card">
-        <figure class="profile-image">
-          <img src="/assets/enrico-profile.jpg" alt="Portrait of Enrico C. Perotti" />
-        </figure>
-        <h1 class="profile-name">{profile.name}</h1>
-        <p class="profile-role">Professor of Finance<br />Amsterdam Business School</p>
-        <div class="tag-row">
-          <span class="profile-tag">Finance</span>
-          <span class="profile-tag">Regulation</span>
-          <span class="profile-tag">Policy</span>
-        </div>
-      </aside>
-
-      <div>
-        <p class="eyebrow">Curriculum Vitae</p>
-        <h2 class="cv-title">Academic profile and appointments.</h2>
-        <p class="body-copy muted" style="max-width: 690px; margin-top: 30px;">
-          Professor of Finance at the Amsterdam Business School, University of Amsterdam.
-          His work spans financial intermediation and regulation, macrofinance, political economy,
-          financial and legal history, and organization theory.
-        </p>
-        <div class="actions">
-          <a class="button" href="#">Download CV</a>
-          <a class="button secondary" href="/publications/">View publications</a>
-          <a class="button secondary" href="/contact/">Contact</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="container section tight bio-role-grid">
-    <div class="section-copy">
-      <p class="eyebrow small">Bio</p>
-      <h3>A finance scholar working across institutions, stability, and policy.</h3>
-      <p>
-        Perotti is Professor of Finance at the Amsterdam Business School. His research focuses
-        on financial intermediation and regulation, macrofinance and long-term growth, political
-        economy, financial and legal history, and organization theory. Alongside academic research,
-        his recent activity includes advisory work on financial stability at De Nederlandsche Bank,
-        the European Central Bank / ESRB, and the Bank of England.
+<BaseLayout title="Background & Experience">
+  <section class="page-band">
+    <div class="container">
+      <p class="eyebrow">Enrico C. Perotti</p>
+      <h1 class="hero-title experience-title">
+        Background &amp; Experience
+      </h1>
+      <p class="hero-copy experience-intro">
+        Professor of Finance at the Amsterdam Business School,
+        University of Amsterdam.
       </p>
     </div>
+  </section>
 
-    <div>
-      <p class="eyebrow small">Current Roles</p>
-      <h3 class="section-title small">Current academic and policy roles.</h3>
-      <div class="role-table" style="margin-top: 10px;">
-        <div class="role-row">
-          <p class="row-label">Academic position</p>
-          <p>Professor of Finance, University of Amsterdam.</p>
-        </div>
-        <div class="role-row">
-          <p class="row-label">Policy role</p>
-          <p>Senior Advisor on Financial Stability, De Nederlandsche Bank.</p>
-        </div>
-        <div class="role-row">
-          <p class="row-label">Research fields</p>
-          <p>Financial intermediation, bank regulation, macrofinance, political economy, and financial history.</p>
-        </div>
+  <div class="container experience-content">
+    <section class="experience-section">
+      <h2>Research Interests</h2>
+      <p class="interests">
+        Financial intermediation and regulation; macrofinance and
+        long-term growth; political economy; financial and legal
+        history; organization theory.
+      </p>
+    </section>
+
+    {
+      sections.map((section) => (
+        <section class="experience-section">
+          <h2>{section.title}</h2>
+          <div class="experience-list">
+            {section.items.map((item) => (
+              <div class="experience-row">
+                <p class="experience-date">{item.date}</p>
+                <div>
+                  <h3>{item.title}</h3>
+                  {item.detail && (
+                    <p class="experience-detail">{item.detail}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+
+    <section class="experience-section">
+      <h2>Fellowships and Affiliations</h2>
+      <ul class="experience-bullets">
+        {affiliations.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="experience-section">
+      <h2>Academic and Professional Service</h2>
+      <ul class="experience-bullets">
+        {service.map((item) => <li>{item}</li>)}
+      </ul>
+    </section>
+
+    <section class="experience-section">
+      <h2>Research and Policy Writing</h2>
+      <p class="interests">
+        Explore my publications, ongoing research, and policy contributions.
+      </p>
+      <div class="experience-links">
+        <a class="text-link" href="/publications/">
+          Publications ›
+        </a>
+        <a class="text-link" href="/current-work/">
+          Current work ›
+        </a>
+        <a class="text-link" href="/policy-advisory/">
+          Policy and advisory work ›
+        </a>
+        <a
+          class="text-link"
+          href="https://cepr.org/about/people/enrico-perotti"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          VoxEU and CEPR writing ›
+        </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="container section tight">
-    <div class="section-copy">
-      <p class="eyebrow small">Studies and Career</p>
-      <h3>Education and academic appointments.</h3>
-    </div>
-    <div class="list-card" style="margin-top: 40px;">
-      {
-        cvTimeline.map((item) => (
-          <div class="timeline-row">
-            <span class="date-pill">{item.date}</span>
-            <div>
-              <p class="timeline-title">{item.title}</p>
-              <p class="timeline-detail">{item.detail}</p>
-            </div>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="container section tight">
-    <div class="section-copy">
-      <p class="eyebrow small">Policy Activity</p>
-      <h3>Selected advisory experience.</h3>
-      <p>A compact record of policy-facing roles, kept separate from the full research publication list.</p>
-    </div>
-    <div class="list-card" style="margin-top: 40px;">
-      {
-        advisoryRoles.map((role) => (
-          <div class="policy-row">
-            <p class="row-label">{role.code}</p>
-            <h3>{role.institution}</h3>
-            <p>{role.detail}</p>
-          </div>
-        ))
-      }
-    </div>
-  </section>
-
-  <section class="container section tight">
-    <div class="section-copy">
-      <p class="eyebrow small">Recognition</p>
-      <h3>Recognition and downloadable CV.</h3>
-      <p>Selected awards, fellowships, and a direct route to the full curriculum vitae document.</p>
-    </div>
-    <div class="card recognition-row" style="margin-top: 40px;">
-      <p class="body-copy muted" style="max-width: 858px; margin-top: 0;">{recognition}</p>
-      <a class="button" href="#">Download CV</a>
-    </div>
-  </section>
+    <section class="experience-section">
+      <h2>Contact</h2>
+      <p class="interests">
+        Department of Finance, Amsterdam Business School<br />
+        University of Amsterdam<br />
+        Plantage Muidergracht 12, 1018 TV Amsterdam
+      </p>
+      <a class="text-link" href={`mailto:${profile.email}`}>
+        {profile.email}
+      </a>
+    </section>
+  </div>
 </BaseLayout>
+
+<style>
+  .experience-title {
+    margin-top: 18px;
+    overflow-wrap: break-word;
+  }
+
+  .experience-intro {
+    max-width: 850px;
+    margin-top: 14px;
+  }
+
+  .experience-content {
+    padding-top: 32px;
+    padding-bottom: 48px;
+  }
+
+  .experience-section {
+    padding: 24px 0;
+    border-bottom: 1px solid #deded8;
+  }
+
+  .experience-section:last-child {
+    border-bottom: 0;
+  }
+
+  .experience-section h2 {
+    margin: 0 0 18px;
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .interests {
+    max-width: 950px;
+    margin: 0 0 12px;
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--neutral-80, #444);
+  }
+
+  .experience-row {
+    display: grid;
+    grid-template-columns: 185px minmax(0, 1fr);
+    gap: 24px;
+    padding: 12px 0;
+  }
+
+  .experience-date {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--neutral-80, #666);
+  }
+
+  .experience-row h3 {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  .experience-detail {
+    margin: 5px 0 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--neutral-80, #555);
+  }
+
+  .experience-bullets {
+    max-width: 1000px;
+    margin: 0;
+    padding-left: 20px;
+  }
+
+  .experience-bullets li {
+    margin-bottom: 10px;
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--neutral-80, #444);
+  }
+
+  .experience-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 28px;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 700px) {
+    .experience-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 14px 0;
+    }
+
+    .experience-section h2 {
+      font-size: 23px;
+    }
+  }
+</style>
