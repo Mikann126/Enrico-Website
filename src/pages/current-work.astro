@@ -7,6 +7,7 @@ type Paper = {
   authors: string;
   summary: string;
   links: PaperLink[];
+  figure?: boolean;
 };
 const groups: { id: string; title: string; papers: Paper[] }[] = [
   {
@@ -129,28 +130,15 @@ const groups: { id: string; title: string; papers: Paper[] }[] = [
     ]
   }
 ];
-const policyProjects = [
-  {
-    "title": "Stablecoin Regulation",
-    "summary": "Regulatory equivalence, cross-border issuance, and redemption arbitrage, with a focus on automatic stabilisers for stablecoin runs.",
-    "links": [
-      {
-        "label": "VoxEU column",
-        "url": "https://cepr.org/voxeu/columns/automatic-stabilisers-multi-country-issuance-stablecoins"
-      }
-    ]
-  },
-  {
-    "title": "Contingent Capital & AT1 Reform",
-    "summary": "Making contingent capital credible as a going-concern instrument, supporting timely supervisory intervention and bank recovery.",
-    "links": [
-      {
-        "label": "VoxEU column",
-        "url": "https://cepr.org/voxeu/columns/building-bank-resilience-additional-tier-1-debt-reform"
-      }
-    ]
-  }
-];
+
+groups[0].papers.unshift({
+  title: "Sand in the Wheels: Addressing Bank Runs through Contingent Fees",
+  authors: "With Remo Oostdam and Rafael Matta",
+  summary: "Studies how redemption fees triggered by large outflows change withdrawal incentives, and how their allocation affects the balance between run prevention and liquidity provision.",
+  links: [{ label: "Public draft: Contingent Fees to Contain Bank Runs", url: "https://elischolar.library.yale.edu/ypfs-documents2/5464/" }],
+  figure: true,
+});
+
 ---
 
 <BaseLayout title="Current Work" active="Current Work">
@@ -159,154 +147,92 @@ const policyProjects = [
       <p class="eyebrow">Enrico C. Perotti</p>
       <h1 class="hero-title work-title">Current Work</h1>
       <p class="hero-copy work-intro">
-        My current research connects demand for safety and financial resilience
-        with broader questions about growth, inequality, and institutions.
+        Research on financial stability, growth, inequality, and institutions.
       </p>
     </div>
   </section>
 
   <div class="container work-content">
-    <article class="featured-work" aria-labelledby="featured-title">
-      <div class="featured-copy">
-        <p class="work-label">Working paper</p>
-        <h2 id="featured-title">Sand in the Wheels: Addressing Bank Runs through Contingent Fees</h2>
-        <p class="work-authors">With Remo Oostdam and Rafael Matta</p>
-        <p class="featured-summary">
-          Can redemption fees contain runs without suspending withdrawals?
-          We study how fees triggered by large outflows change withdrawal
-          incentives, and how their allocation affects the balance between
-          run prevention and liquidity provision.
-        </p>
-        <div class="paper-links">
-          <a
-            href="https://elischolar.library.yale.edu/ypfs-documents2/5464/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Read public draft ↗</a>
-        </div>
-        <p class="draft-note">
-          The linked draft is titled “Contingent Fees to Contain Bank Runs.”
-        </p>
-      </div>
-      <figure class="featured-figure">
-        <a href="/assets/contingent-fees-figure-1.png" target="_blank" rel="noopener noreferrer" aria-label="Enlarge the figure comparing run thresholds">
-          <img
-            src="/assets/contingent-fees-figure-1.png"
-            alt="Run thresholds under sequential service and two fee mechanisms, plotted against liquidation value."
-            width="1170"
-            height="963"
-          />
-        </a>
-        <figcaption>
-          Contingent fees reduce panic-based run thresholds relative to
-          sequential service. Click the figure to enlarge.
-        </figcaption>
-      </figure>
-    </article>
-
-    <nav class="work-nav" aria-label="Research areas">
-      {groups.map((group) => <a href={`#${group.id}`}>{group.title}</a>)}
-    </nav>
-
-    <div class="research-columns">
-      {groups.map((group) => (
-        <section class="research-group" id={group.id}>
-          <h2>{group.title}</h2>
-          <div>
-            {group.papers.map((paper) => (
-              <article class="research-paper">
-                <h3>
-                  {paper.links.length > 0 && !paper.links[0].label.startsWith("Earlier") ? (
-                    <a href={paper.links[0].url} target="_blank" rel="noopener noreferrer">{paper.title}</a>
-                  ) : paper.title}
-                </h3>
-                <p class="work-authors">{paper.authors}</p>
-                <p class="paper-summary">{paper.summary}</p>
-                {paper.links.length > 0 && (
-                  <div class="paper-links">
-                    {paper.links.map((link) => (
-                      <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>
-                    ))}
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
-        </section>
-      ))}
-    </div>
-
-    <section class="policy-section" aria-labelledby="policy-heading">
-      <div class="policy-heading">
-        <h2 id="policy-heading">Current Policy Work</h2>
-        <a class="section-more" href="/policy-advisory/">All policy work ›</a>
-      </div>
-      <div class="policy-columns">
-        {policyProjects.map((project) => (
-          <article class="policy-project">
-            <h3>{project.title}</h3>
-            <p class="paper-summary">{project.summary}</p>
-            <div class="paper-links">
-              {project.links.map((link) => (
-                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>
+    <section class="main-section" aria-labelledby="papers-heading">
+      <h2 class="main-heading" id="papers-heading">Working Papers</h2>
+      <div class="research-groups">
+        {groups.map((group) => (
+          <section class="research-group" aria-labelledby={`${group.id}-heading`}>
+            <h3 class="area-heading" id={`${group.id}-heading`}>{group.title}</h3>
+            <div class="paper-list">
+              {group.papers.map((paper) => (
+                <article class="research-paper">
+                  <h4 class="paper-title">
+                    {paper.links.length > 0 && !paper.links[0].label.startsWith("Earlier") ? (
+                      <a href={paper.links[0].url} target="_blank" rel="noopener noreferrer">{paper.title}</a>
+                    ) : paper.title}
+                  </h4>
+                  <p class="work-authors">{paper.authors}</p>
+                  <p class="paper-summary">{paper.summary}</p>
+                  {paper.links.length > 0 && (
+                    <div class="paper-links">
+                      {paper.links.map((link) => (
+                        <a href={link.url} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>
+                      ))}
+                    </div>
+                  )}
+                  {paper.figure && (
+                    <details class="paper-figure">
+                      <summary>View research figure</summary>
+                      <figure>
+                        <a href="/assets/contingent-fees-figure-1.png" target="_blank" rel="noopener noreferrer" aria-label="Enlarge research figure">
+                          <img src="/assets/contingent-fees-figure-1.png" alt="Run thresholds under sequential service and two contingent fee mechanisms, plotted against liquidation value." width="1170" height="963" loading="lazy" />
+                        </a>
+                        <figcaption>Run thresholds under sequential service and contingent fees. Click to enlarge.</figcaption>
+                      </figure>
+                    </details>
+                  )}
+                </article>
               ))}
             </div>
-          </article>
+          </section>
         ))}
       </div>
     </section>
 
     <div class="work-footer">
-      <p>
-        For enquiries about projects without a public draft,
-        <a href="mailto:e.c.perotti@uva.nl">please contact me</a>.
-      </p>
-      <a class="section-more" href="/publications/">Browse published research ›</a>
+      <p>For projects without a public draft, <a href="mailto:e.c.perotti@uva.nl">please contact me</a>.</p>
+      <a class="section-more" href="/publications/">Published research ›</a>
     </div>
   </div>
 </BaseLayout>
 
 <style>
   .work-title { margin-top: 18px; }
-  .work-intro { max-width: 850px; margin-top: 12px; }
+  .work-intro { margin-top: 12px; max-width: 850px; }
   .work-content { padding-top: 30px; padding-bottom: 36px; }
-  .featured-work { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); align-items: center; gap: 40px; padding-bottom: 28px; }
-  .featured-copy { min-width: 0; }
-  .work-label { margin: 0 0 10px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: #666; }
-  .featured-copy h2 { margin: 0; font-size: 29px; line-height: 1.3; }
-  .work-authors { margin: 7px 0 0; font-size: 13px; line-height: 1.5; color: #666; }
-  .featured-summary { margin: 17px 0 0; font-size: 16px; line-height: 1.65; color: var(--neutral-80, #444); }
-  .draft-note { margin: 9px 0 0; font-size: 12px; line-height: 1.5; color: #666; }
-  .featured-figure { min-width: 0; margin: 0; }
-  .featured-figure a { display: block; background: #fff; }
-  .featured-figure img { display: block; width: 100%; height: auto; object-fit: contain; }
-  .featured-figure figcaption { margin-top: 9px; font-size: 12px; line-height: 1.5; color: #666; }
-  .work-nav { display: flex; flex-wrap: wrap; gap: 8px 24px; padding: 17px 0; border-top: 1px solid #d5d5ce; border-bottom: 1px solid #d5d5ce; }
-  .work-nav a { font-size: 13px; line-height: 1.5; }
-  .research-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 44px; margin-top: 30px; align-items: start; }
-  .research-group { min-width: 0; scroll-margin-top: 110px; }
-  .research-group h2, .policy-heading h2 { margin: 0 0 16px; font-size: 24px; line-height: 1.35; }
-  .research-paper { padding: 16px 0; border-top: 1px solid #deded8; }
-  .research-paper h3, .policy-project h3 { margin: 0; font-size: 19px; line-height: 1.4; font-weight: 600; }
-  .paper-summary { margin: 9px 0 0; font-size: 15px; line-height: 1.6; color: var(--neutral-80, #444); }
-  .paper-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 11px; }
-  .paper-links a, .section-more { font-size: 13px; font-weight: 600; line-height: 1.5; }
-  .work-nav a, .research-paper h3 a, .paper-links a, .section-more, .work-footer a { color: inherit; text-decoration: none; }
-  .work-nav a:hover, .research-paper h3 a:hover, .paper-links a:hover, .section-more:hover, .work-footer a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  .policy-section { margin-top: 30px; padding-top: 24px; border-top: 1px solid #d5d5ce; }
-  .policy-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; }
-  .policy-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 44px; }
-  .policy-project { min-width: 0; }
-  .work-footer { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px 28px; margin-top: 28px; padding-top: 18px; border-top: 1px solid #deded8; }
+  .main-heading { margin: 0; padding-bottom: 14px; border-bottom: 2px solid #777d70; font-size: 31px; line-height: 1.25; font-weight: 600; }
+  .research-group { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 36px; padding: 26px 0; border-bottom: 1px solid #d8d8d0; }
+  .research-group:last-child { border-bottom: 0; }
+  .area-heading { margin: 0; font-size: 14px; line-height: 1.55; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #59634e; }
+  .research-paper { padding: 16px 0; border-top: 1px solid #e5e5df; }
+  .research-paper:first-child { padding-top: 0; border-top: 0; }
+  .research-paper:last-child { padding-bottom: 0; }
+  .paper-title { margin: 0; font-size: 20px; line-height: 1.4; font-weight: 600; }
+  .paper-title a { color: inherit; text-decoration: none; }
+  .paper-title a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .work-authors { margin: 5px 0 0; font-size: 13px; line-height: 1.5; color: #666; }
+  .paper-summary { max-width: 850px; margin: 9px 0 0; font-size: 15px; line-height: 1.6; color: var(--neutral-80, #444); }
+  .paper-links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 9px; }
+  .paper-links a, .section-more { color: inherit; font-size: 13px; font-weight: 600; line-height: 1.5; text-decoration: none; }
+  .paper-links a:hover, .section-more:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .paper-figure { margin-top: 10px; }
+  .paper-figure summary { width: fit-content; cursor: pointer; font-size: 13px; color: #555; }
+  .paper-figure figure { max-width: 520px; margin: 16px 0 0; }
+  .paper-figure img { display: block; width: 100%; height: auto; background: #fff; }
+  .paper-figure figcaption { margin-top: 8px; font-size: 12px; line-height: 1.5; color: #666; }
+  .work-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; margin-top: 30px; padding-top: 18px; border-top: 1px solid #deded8; }
   .work-footer p { margin: 0; font-size: 13px; line-height: 1.6; color: #666; }
-  .work-footer p a { text-decoration: underline; text-underline-offset: 3px; }
+  .work-footer p a { color: inherit; text-underline-offset: 3px; }
   @media (max-width: 800px) {
-    .featured-work, .research-columns, .policy-columns { grid-template-columns: 1fr; }
-    .featured-work { gap: 22px; }
-    .featured-copy h2 { font-size: 25px; }
-    .featured-figure { max-width: 550px; }
-    .research-columns { gap: 24px; }
-    .research-group h2, .policy-heading h2 { font-size: 22px; }
-    .work-nav { gap: 8px 18px; }
-  }
+    .research-group { grid-template-columns: 1fr; gap: 16px; padding: 24px 0; }
+    .area-heading { font-size: 13px; }
+    .main-heading { font-size: 28px; }
+    .paper-title { font-size: 18px; }
+    }
 </style>
